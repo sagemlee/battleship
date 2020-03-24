@@ -3,7 +3,18 @@ class Cell
 
   def initialize(coordinate)
     @coordinate = coordinate
-    @ship = nil 
+    @ship = nil
   end
+
+  def empty?
+    if @ship == nil
+      true
+    end
+  end
+
+  def place_ship(type_of_ship)
+    @ship = type_of_ship
+  end
+
 
 end

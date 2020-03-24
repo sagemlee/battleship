@@ -4,12 +4,12 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/ship'
 require './lib/cell'
+require 'pry'
 
 class CellTest < Minitest::Test
   def setup
     @cell = Cell.new("B4")
-
-    cruiser = Ship.new("Cruiser", 3)
+    @cruiser = Ship.new("Cruiser", 3)
   end
 
   def test_it_exists
@@ -24,5 +24,17 @@ class CellTest < Minitest::Test
     assert_nil @cell.ship
   end
 
+  def test_it_can_place_ship
+    @cell.place_ship(@cruiser)
+    assert_equal @cruiser, @cell.ship
+  end
+
+
 
 end
+
+# @cell = Cell.new("B4")
+#
+# cruiser = Ship.new("Cruiser", 3)
+#
+# binding.pry
