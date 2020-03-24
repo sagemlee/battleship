@@ -2,13 +2,14 @@
 
 require 'minitest/autorun'
 require 'minitest/pride'
-
 require './lib/ship'
 require './lib/cell'
 
 class CellTest < Minitest::Test
   def setup
     @cell = Cell.new("B4")
+
+    cruiser = Ship.new("Cruiser", 3)
   end
 
   def test_it_exists
@@ -17,7 +18,11 @@ class CellTest < Minitest::Test
 
   def test_it_has_coordinate
     assert_equal "B4", @cell.coordinate
-  end 
+  end
+
+  def test_it_has_ship_in_cell
+    assert_nil @cell.ship
+  end
 
 
 end
