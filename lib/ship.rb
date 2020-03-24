@@ -7,7 +7,7 @@ class Ship
     @name = name
     @length = length
     @health = length
-    @sunk = false
+    
   end
 
   def sunk?
