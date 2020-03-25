@@ -7,15 +7,19 @@ class Cell
   end
 
   def empty?
-    if @ship == nil
-      true
-    else
-      false
-    end
+    @ship == nil
   end
 
   def place_ship(type_of_ship)
     @ship = type_of_ship
+  end
+
+  def fired_upon?
+    if @cell == nil
+      false
+    else
+      true
+    end
   end
 
 

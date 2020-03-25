@@ -29,12 +29,15 @@ class CellTest < Minitest::Test
     assert_equal @cruiser, @cell.ship
   end
 
+  def test_cell_has_not_been_fired_when_new
+    assert_equal false, @cell.fired_upon?
+  end
+
 
 
 end
 
 # @cell = Cell.new("B4")
 # @cruiser = Ship.new("Cruiser", 3)
-# @cell.place_ship(@cruiser)
 # @cell.place_ship(@cruiser)
 # binding.pry
