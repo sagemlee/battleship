@@ -38,25 +38,19 @@ class CellTest < Minitest::Test
     assert_equal @cruiser, @cell.ship
   end
 
-  def test_cell_has_not_been_fired_when_new
+  def test_that_cell_has_not_been_fired_when_new
     assert_equal false, @cell.fired_upon?
   end
-#
-#   def test_it_has_been_fired_on
-#       @cell.fire_upon
-#     assert_equal true, @cell.fired_upon?
-#   end
-#
-#   def test_fired_will_affect_health
-#     @cell.place_ship(@cruiser)
-#     @cell.fire_upon
-#     assert_equal 2, @cell.ship.health
-#   end
-#
-#
-end
 
-# @cell = Cell.new("B4")
-# @cruiser = Ship.new("Cruiser", 3)
-# @cell.place_ship(@cruiser)
-# binding.pry
+  def test_it_has_been_fired_on
+    @cell.fire_upon
+    assert_equal true, @cell.fired_upon?
+  end
+
+  def test_that_fire_upon_affects_ship_health
+      @cell.place_ship(@cruiser)
+      @cell.fire_upon
+      assert_equal 2, @cell.ship.health
+  end
+
+end

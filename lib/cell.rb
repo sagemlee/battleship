@@ -28,6 +28,8 @@ class Cell
 
   def fire_upon
     @fired_upon = true
-    self.ship.hit
+    if empty? == false
+      @ship.hit
+    end
   end
 end
