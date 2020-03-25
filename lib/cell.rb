@@ -35,7 +35,7 @@ class Cell
 
   def render
     if fired_upon?
-       "M"
+      "M"
     else
       "."
     end
