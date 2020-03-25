@@ -1,9 +1,13 @@
+require 'pry'
+require './lib/ship'
+
 class Cell
   attr_reader :coordinate, :ship
 
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = nil
+    @fired_upon = false
   end
 
   def empty?
@@ -15,12 +19,11 @@ class Cell
   end
 
   def fired_upon?
-    if @cell == nil
-      false
-    else
-      true
-    end
+    @fired_upon
   end
 
-
+  def fire_upon
+    @fired_upon = true
+    @ship.hit 
+  end
 end

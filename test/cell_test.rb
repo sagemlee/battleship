@@ -33,6 +33,17 @@ class CellTest < Minitest::Test
     assert_equal false, @cell.fired_upon?
   end
 
+  def test_it_has_been_fired_on
+      @cell.fire_upon
+    assert_equal true, @cell.fired_upon?
+  end
+
+  def test_fired_will_affect_health
+    @cell.place_ship(@cruiser)
+    binding.pry
+    @cell.fire_upon
+    assert_equal 2, @cell.cruiser.health
+  end
 
 
 end
