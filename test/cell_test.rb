@@ -34,7 +34,7 @@ class CellTest < Minitest::Test
 end
 
 # @cell = Cell.new("B4")
-#
-# cruiser = Ship.new("Cruiser", 3)
-#
+# @cruiser = Ship.new("Cruiser", 3)
+# @cell.place_ship(@cruiser)
+# @cell.place_ship(@cruiser)
 # binding.pry
