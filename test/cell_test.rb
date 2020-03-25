@@ -24,7 +24,16 @@ class CellTest < Minitest::Test
     assert_nil @cell.ship
   end
 
-  def test_it_can_place_ship
+  def test_that_cell_starts_empty
+    assert @cell.empty?
+  end
+
+  def test_it_can_be_not_empty
+    @cell.place_ship(@cruiser)
+    refute @cell.empty?
+  end
+
+  def test_that_place_ship_puts_ship_on_cell
     @cell.place_ship(@cruiser)
     assert_equal @cruiser, @cell.ship
   end
@@ -32,20 +41,19 @@ class CellTest < Minitest::Test
   def test_cell_has_not_been_fired_when_new
     assert_equal false, @cell.fired_upon?
   end
-
-  def test_it_has_been_fired_on
-      @cell.fire_upon
-    assert_equal true, @cell.fired_upon?
-  end
-
-  def test_fired_will_affect_health
-    @cell.place_ship(@cruiser)
-    binding.pry
-    @cell.fire_upon
-    assert_equal 2, @cell.cruiser.health
-  end
-
-
+#
+#   def test_it_has_been_fired_on
+#       @cell.fire_upon
+#     assert_equal true, @cell.fired_upon?
+#   end
+#
+#   def test_fired_will_affect_health
+#     @cell.place_ship(@cruiser)
+#     @cell.fire_upon
+#     assert_equal 2, @cell.ship.health
+#   end
+#
+#
 end
 
 # @cell = Cell.new("B4")

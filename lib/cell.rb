@@ -14,6 +14,10 @@ class Cell
     @ship == nil
   end
 
+  # def ship
+  #   @ship
+  # end
+
   def place_ship(type_of_ship)
     @ship = type_of_ship
   end
@@ -24,6 +28,6 @@ class Cell
 
   def fire_upon
     @fired_upon = true
-    @ship.hit 
+    self.ship.hit
   end
 end
