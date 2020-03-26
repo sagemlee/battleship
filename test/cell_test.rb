@@ -89,4 +89,15 @@ class CellTest < Minitest::Test
     assert_equal "H", cell_2.render
   end
 
+  def test_that_sunk_ship_renders
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(@cruiser)
+
+    cell_2.fire_upon
+
+    @cruiser.hit
+    @cruiser.hit
+
+    assert_equal "X", cell_2.render
+  end
 end

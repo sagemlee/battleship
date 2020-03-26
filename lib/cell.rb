@@ -34,20 +34,16 @@ class Cell
   end
 
   def render(secret = false)
-    if
-      (secret == true)
-      (empty? == false)
-      (fired_upon? == false)
+    if fired_upon? == false && empty? == false && secret == true
         "S"
-    elsif
-      (fired_upon? == false)
+    elsif fired_upon? == false
         "."
-    elsif
-      (empty? == false)
-      (fired_upon? == true)
-        "H"
-    else
+    elsif fired_upon? == true && empty? == true
         "M"
+    elsif @ship.sunk? == true
+        "X"
+    elsif fired_upon? == true && empty? == false
+        "H"
     end
   end
 end
