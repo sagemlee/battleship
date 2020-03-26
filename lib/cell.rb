@@ -34,12 +34,18 @@ class Cell
   end
 
   def render(secret = false)
-    if (secret == true)
+    if
+      (secret == true)
       (empty? == false)
       (fired_upon? == false)
         "S"
-    elsif (fired_upon? == false)
+    elsif
+      (fired_upon? == false)
         "."
+    elsif
+      (empty? == false)
+      (fired_upon? == true)
+        "H"
     else
         "M"
     end

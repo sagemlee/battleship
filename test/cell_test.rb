@@ -81,8 +81,12 @@ class CellTest < Minitest::Test
   end
 
   def test_that_fire_upon_renders_with_ship
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(@cruiser)
 
-    
+    cell_2.fire_upon
+
+    assert_equal "H", cell_2.render
   end
 
 end
