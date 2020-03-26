@@ -66,4 +66,18 @@ class CellTest < Minitest::Test
     assert_equal "M", cell_1.render
   end
 
+  def test_it_can_render_with_ship
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(@cruiser)
+
+    assert_equal ".", cell_2.render
+  end
+
+  def test_it_can_show_hidden_ship
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(@cruiser)
+
+    assert_equal "S", cell_2.render(true)
+  end
+
 end

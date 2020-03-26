@@ -33,13 +33,15 @@ class Cell
     end
   end
 
-  def render
-    if fired_upon?
-      "M"
+  def render(secret = false)
+    if (secret == true)
+      (empty? == false)
+      (fired_upon? == false)
+        "S"
+    elsif (fired_upon? == false)
+        "."
     else
-      "."
+        "M"
     end
   end
-
-
 end
