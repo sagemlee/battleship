@@ -53,4 +53,51 @@ class CellTest < Minitest::Test
       assert_equal 2, @cell.ship.health
   end
 
+  def test_it_can_render_when_created
+    cell_1 = Cell.new("B4")
+
+    assert_equal ".", cell_1.render
+  end
+
+  def test_that_it_can_render_when_hit_with_no_ship
+    cell_1 = Cell.new("B4")
+    cell_1.fire_upon
+
+    assert_equal "M", cell_1.render
+  end
+
+  def test_it_can_render_with_ship
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(@cruiser)
+
+    assert_equal ".", cell_2.render
+  end
+
+  def test_it_can_show_hidden_ship
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(@cruiser)
+
+    assert_equal "S", cell_2.render(true)
+  end
+
+  def test_that_fire_upon_renders_with_ship
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(@cruiser)
+
+    cell_2.fire_upon
+
+    assert_equal "H", cell_2.render
+  end
+
+  def test_that_sunk_ship_renders
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(@cruiser)
+
+    cell_2.fire_upon
+
+    @cruiser.hit
+    @cruiser.hit
+
+    assert_equal "X", cell_2.render
+  end
 end
