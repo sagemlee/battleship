@@ -59,7 +59,7 @@ class CellTest < Minitest::Test
     assert_equal ".", cell_1.render
   end
 
-  def test_it_can_render_after_fired_upon
+  def test_that_it_can_render_when_hit_with_no_ship
     cell_1 = Cell.new("B4")
     cell_1.fire_upon
 
@@ -78,6 +78,11 @@ class CellTest < Minitest::Test
     cell_2.place_ship(@cruiser)
 
     assert_equal "S", cell_2.render(true)
+  end
+
+  def test_that_fire_upon_renders_with_ship
+
+    
   end
 
 end
