@@ -16,23 +16,31 @@ class BoardTest < Minitest::Test
 
     board = Board.new
     assert_equal ({
-    :"A1" => board.cell1,
-    :"A2" => board.cell2,
-    :"A3" => board.cell3,
-    :"A4" => board.cell4,
-    :"B1" => board.cell5,
-    :"B2" => board.cell6,
-    :"B3" => board.cell7,
-    :"B4" => board.cell8,
-    :"C1" => board.cell9,
-    :"C2" => board.cell10,
-    :"C3" => board.cell11,
-    :"C4" => board.cell12,
-    :"D1" => board.cell13,
-    :"D2" => board.cell14,
-    :"D3" => board.cell15,
-    :"D4" => board.cell16
-    }), board.cells
+    "A1" => board.cell1,
+    "A2" => board.cell2,
+    "A3" => board.cell3,
+    "A4" => board.cell4,
+    "B1" => board.cell5,
+    "B2" => board.cell6,
+    "B3" => board.cell7,
+    "B4" => board.cell8,
+    "C1" => board.cell9,
+    "C2" => board.cell10,
+    "C3" => board.cell11,
+    "C4" => board.cell12,
+    "D1" => board.cell13,
+    "D2" => board.cell14,
+    "D3" => board.cell15,
+    "D4" => board.cell16
+    }),
+    board.cells
+  end
+
+  def test_that_coordinate_is_on_board
+
+    board = Board.new
+    assert_equal true, board.valid_coordinate?("A1")
+    assert_equal false, board.valid_coordinate?("A5")
   end
 
 end

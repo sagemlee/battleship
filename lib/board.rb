@@ -39,32 +39,33 @@ attr_reader :cell1,
     @cell14 = Cell.new("D2")
     @cell15 = Cell.new("D3")
     @cell16 = Cell.new("D4")
-
-
   end
-
 
   def cells
     @cell_hash =
       {
-      :"A1" => @cell1,
-      :"A2" => @cell2,
-      :"A3" => @cell3,
-      :"A4" => @cell4,
-      :"B1" => @cell5,
-      :"B2" => @cell6,
-      :"B3" => @cell7,
-      :"B4" => @cell8,
-      :"C1" => @cell9,
-      :"C2" => @cell10,
-      :"C3" => @cell11,
-      :"C4" => @cell12,
-      :"D1" => @cell13,
-      :"D2" => @cell14,
-      :"D3" => @cell15,
-      :"D4" => @cell16
+      "A1" => @cell1,
+      "A2" => @cell2,
+      "A3" => @cell3,
+      "A4" => @cell4,
+      "B1" => @cell5,
+      "B2" => @cell6,
+      "B3" => @cell7,
+      "B4" => @cell8,
+      "C1" => @cell9,
+      "C2" => @cell10,
+      "C3" => @cell11,
+      "C4" => @cell12,
+      "D1" => @cell13,
+      "D2" => @cell14,
+      "D3" => @cell15,
+      "D4" => @cell16
       }
     @cell_hash
   end
 
-end
+  def valid_coordinate?(coordinate)
+    cells
+    @cell_hash.keys.include?(coordinate)
+    end
+  end
