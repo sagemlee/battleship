@@ -67,5 +67,15 @@ attr_reader :cell1,
   def valid_coordinate?(coordinate)
     cells
     @cell_hash.keys.include?(coordinate)
-    end
   end
+
+  def valid_placement?(ship, coordinates)
+    ship.length == coordinates.count
+
+    coordinates.each_cons(2).all? {|a,b| b == a + 1}
+  end
+
+# .each_cons is working. Need to seperate
+#coordinates into arrays to use in each_con method.
+
+end
