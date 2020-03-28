@@ -1,4 +1,5 @@
-require "pry"
+require './lib/cell'
+
 class Board
 
 attr_reader :cell1,
@@ -70,7 +71,6 @@ attr_reader :cell1,
   end
 
   def valid_placement?(ship, coordinates)
-
 # create helper method here if refactoring (.horizontal)
     letters_array = []
     coordinates.each do |coordinate|
@@ -90,6 +90,13 @@ attr_reader :cell1,
         letters_array.each_cons(2).all? {|a,b| b.ord == a.ord + 1}
     else
         false
+    end
+  end
+
+  def place(ship, set_of_coordinates)
+    cells
+    set_of_coordinates.each do |coordinate|
+      @cell_hash[coordinate].place_ship(ship)
     end
   end
 end
