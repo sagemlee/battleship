@@ -71,13 +71,13 @@ attr_reader :cell1,
 
   def valid_placement?(ship, coordinates)
 
-# create helper method here if refactoring
+# create helper method here if refactoring (.horizontal)
     letters_array = []
     coordinates.each do |coordinate|
     letters_array << coordinate.slice(0)
     end
 
-# create helper method here if refactoring
+# create helper method here if refactoring (.vertical)
     numbers_array = []
     coordinates.each do |coordinate|
     numbers_array << coordinate.slice(1)
