@@ -70,12 +70,26 @@ attr_reader :cell1,
   end
 
   def valid_placement?(ship, coordinates)
-    ship.length == coordinates.count
 
-    coordinates.each_cons(2).all? {|a,b| b == a + 1}
+# create helper method here if refactoring
+    letters_array = []
+    coordinates.each do |coordinate|
+    letters_array << coordinate.slice(0)
+    end
+
+# create helper method here if refactoring
+    numbers_array = []
+    coordinates.each do |coordinate|
+    numbers_array << coordinate.slice(1)
+    end
+
+    if letters_array.uniq.size <= 1 && ship.length == coordinates.count
+        numbers_array.each_cons(2).all? {|a,b| b.to_i == a.to_i + 1}
+
+    elsif numbers_array.uniq.size <= 1 && ship.length == coordinates.count
+        letters_array.each_cons(2).all? {|a,b| b.ord == a.ord + 1}
+    else
+        false
+    end
   end
-
-# .each_cons is working. Need to seperate
-#coordinates into arrays to use in each_con method.
-
 end
