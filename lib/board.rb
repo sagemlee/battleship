@@ -1,4 +1,5 @@
 require './lib/cell'
+require 'pry'
 
 class Board
 
@@ -18,7 +19,8 @@ attr_reader :cell1,
             :cell14,
             :cell15,
             :cell16,
-            :cell_hash
+            :cell_hash,
+            :taken_coordinates
 
   def initialize
     @cell1 = Cell.new("A1")
@@ -40,6 +42,9 @@ attr_reader :cell1,
     @cell14 = Cell.new("D2")
     @cell15 = Cell.new("D3")
     @cell16 = Cell.new("D4")
+
+    @taken_coordinates = []
+
   end
 
   def cells
@@ -76,24 +81,25 @@ attr_reader :cell1,
     coordinates.each do |coordinate|
     letters_array << coordinate.slice(0)
     end
-
 # create helper method here if refactoring (.vertical)
     numbers_array = []
     coordinates.each do |coordinate|
     numbers_array << coordinate.slice(1)
     end
 
-    if letters_array.uniq.size <= 1 && ship.length == coordinates.count
+    if ((letters_array.uniq.size <= 1) && (ship.length == coordinates.count)) && (coordinates & @taken_coordinates.to_a == [])
         numbers_array.each_cons(2).all? {|a,b| b.to_i == a.to_i + 1}
 
-    elsif numbers_array.uniq.size <= 1 && ship.length == coordinates.count
-        letters_array.each_cons(2).all? {|a,b| b.ord == a.ord + 1}
-    else
-        false
+      elsif ((numbers_array.uniq.size <= 1) && (ship.length == coordinates.count)) && (coordinates & @taken_coordinates.to_a == [])
+          letters_array.each_cons(2).all? {|a,b| b.ord == a.ord + 1}
+      else false
     end
   end
 
   def place(ship, set_of_coordinates)
+      set_of_coordinates.each do |coordinate|
+      @taken_coordinates << coordinate
+    end
     cells
     set_of_coordinates.each do |coordinate|
       @cell_hash[coordinate].place_ship(ship)
