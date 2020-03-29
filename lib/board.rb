@@ -1,8 +1,10 @@
 require './lib/cell'
+require 'pry'
 
 class Board
 
-attr_reader :cells
+attr_reader :cells,
+            :taken_coordinates
 
   def initialize
     @cells = {
@@ -23,6 +25,8 @@ attr_reader :cells
     "D3" => Cell.new("D3"),
     "D4" => Cell.new("D4")
     }
+
+    @taken_coordinates = []
   end
 
   def valid_coordinate?(coordinate)
@@ -35,25 +39,26 @@ attr_reader :cells
     coordinates.each do |coordinate|
     letters_array << coordinate.slice(0)
     end
-
 # create helper method here if refactoring (.vertical)
     numbers_array = []
     coordinates.each do |coordinate|
     numbers_array << coordinate.slice(1)
     end
 
-    if letters_array.uniq.size <= 1 && ship.length == coordinates.count
+    if ((letters_array.uniq.size <= 1) && (ship.length == coordinates.count)) && (coordinates & @taken_coordinates.to_a == [])
         numbers_array.each_cons(2).all? {|a,b| b.to_i == a.to_i + 1}
 
-    elsif numbers_array.uniq.size <= 1 && ship.length == coordinates.count
-        letters_array.each_cons(2).all? {|a,b| b.ord == a.ord + 1}
-    else
-        false
+      elsif ((numbers_array.uniq.size <= 1) && (ship.length == coordinates.count)) && (coordinates & @taken_coordinates.to_a == [])
+          letters_array.each_cons(2).all? {|a,b| b.ord == a.ord + 1}
+      else false
     end
   end
 
   def place(ship, set_of_coordinates)
-
+      set_of_coordinates.each do |coordinate|
+      @taken_coordinates << coordinate
+    end
+    cells
     set_of_coordinates.each do |coordinate|
       cells[coordinate].place_ship(ship)
     end
