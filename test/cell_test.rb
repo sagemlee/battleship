@@ -1,5 +1,3 @@
-# one small change for man, one giant change for women
-
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/ship'
