@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/ship'
-require './lib/cell'
 require './lib/board'
 require 'pry'
 
@@ -59,11 +58,62 @@ class BoardTest < Minitest::Test
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
-binding.pry
-    assert_equal true, board.valid_placement?(cruiser, ["A1", "A2", "A4"])
+
+    assert_equal false, board.valid_placement?(cruiser, ["A1", "A2", "A4"])
     assert_equal false, board.valid_placement?(submarine, ["A1", "C1"])
     assert_equal false, board.valid_placement?(cruiser, ["A3", "A2", "A1"])
     assert_equal false, board.valid_placement?(submarine, ["C1", "B1"])
   end
+
+  def test_it_cannot_be_diagonal
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+  assert_equal false, board.valid_placement?(cruiser, ["A1", "B2", "C3"])
+  assert_equal false, board.valid_placement?(submarine, ["C2", "D3"])
+  end
+
+  def test_that_placement_is_valid
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    assert_equal true, board.valid_placement?(submarine, ["A1", "A2"])
+    assert_equal true, board.valid_placement?(cruiser, ["B1", "C1", "D1"])
+  end
+
+  def test_that_ship_can_be_placed_on_board
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+
+    board.place(cruiser, ["A1", "A2", "A3"])
+
+    cell_1 = board.cells["A1"]
+    cell_2 = board.cells["A2"]
+    cell_3 = board.cells["A3"]
+
+
+    cell_1.ship
+    cell_2.ship
+    cell_3.ship
+    assert_equal cruiser, cell_1.ship
+  end
+
+  def test_that_a_ship_is_on_multiple_cells
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+
+    board.place(cruiser, ["A1", "A2", "A3"])
+
+    cell_1 = board.cells["A1"]
+    cell_2 = board.cells["A2"]
+    cell_3 = board.cells["A3"]
+
+
+    cell_1.ship
+    cell_2.ship
+    cell_3.ship
+  assert_equal true, cell_3.ship == cell_2.ship
+  end
 end
-# ({"A1": board.cell1, "A2": board.cell2, "A3": board.cell3})
