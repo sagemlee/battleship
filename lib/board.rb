@@ -3,76 +3,34 @@ require 'pry'
 
 class Board
 
-attr_reader :cell1,
-            :cell2,
-            :cell3,
-            :cell4,
-            :cell5,
-            :cell6,
-            :cell7,
-            :cell8,
-            :cell9,
-            :cell10,
-            :cell11,
-            :cell12,
-            :cell13,
-            :cell14,
-            :cell15,
-            :cell16,
-            :cell_hash,
+attr_reader :cells,
             :taken_coordinates
 
   def initialize
-    @cell1 = Cell.new("A1")
-    @cell2 = Cell.new("A2")
-    @cell3 = Cell.new("A3")
-    @cell4 = Cell.new("A4")
-
-    @cell5 = Cell.new("B1")
-    @cell6 = Cell.new("B2")
-    @cell7 = Cell.new("B3")
-    @cell8 = Cell.new("B4")
-
-    @cell9 = Cell.new("C1")
-    @cell10 = Cell.new("C2")
-    @cell11 = Cell.new("C3")
-    @cell12 = Cell.new("C4")
-
-    @cell13 = Cell.new("D1")
-    @cell14 = Cell.new("D2")
-    @cell15 = Cell.new("D3")
-    @cell16 = Cell.new("D4")
+    @cells = {
+    "A1" => Cell.new("A1"),
+    "A2" => Cell.new("A2"),
+    "A3" => Cell.new("A3"),
+    "A4" => Cell.new("A4"),
+    "B1" => Cell.new("B1"),
+    "B2" => Cell.new("B2"),
+    "B3" => Cell.new("B3"),
+    "B4" => Cell.new("B4"),
+    "C1" => Cell.new("C1"),
+    "C2" => Cell.new("C2"),
+    "C3" => Cell.new("C3"),
+    "C4" => Cell.new("C4"),
+    "D1" => Cell.new("D1"),
+    "D2" => Cell.new("D2"),
+    "D3" => Cell.new("D3"),
+    "D4" => Cell.new("D4")
+    }
 
     @taken_coordinates = []
-
-  end
-
-  def cells
-    @cell_hash =
-      {
-      "A1" => @cell1,
-      "A2" => @cell2,
-      "A3" => @cell3,
-      "A4" => @cell4,
-      "B1" => @cell5,
-      "B2" => @cell6,
-      "B3" => @cell7,
-      "B4" => @cell8,
-      "C1" => @cell9,
-      "C2" => @cell10,
-      "C3" => @cell11,
-      "C4" => @cell12,
-      "D1" => @cell13,
-      "D2" => @cell14,
-      "D3" => @cell15,
-      "D4" => @cell16
-      }
-    @cell_hash
   end
 
   def valid_coordinate?(coordinate)
-    cells
-    @cell_hash.keys.include?(coordinate)
+    cells.keys.include?(coordinate)
   end
 
   def valid_placement?(ship, coordinates)
@@ -102,7 +60,17 @@ attr_reader :cell1,
     end
     cells
     set_of_coordinates.each do |coordinate|
-      @cell_hash[coordinate].place_ship(ship)
+      cells[coordinate].place_ship(ship)
     end
+  end
+
+  def render
+
+    "  1 2 3 4 \n" +
+    "A #{cells["A1"].render} #{cells["A2"].render} #{cells["A3"].render} #{cells["A4"].render} \n" +
+    "B #{cells["B1"].render} #{cells["B2"].render} #{cells["B3"].render} #{cells["B4"].render} \n" +
+    "C #{cells["C1"].render} #{cells["C2"].render} #{cells["C3"].render} #{cells["C4"].render} \n" +
+    "D #{cells["D1"].render} #{cells["D2"].render} #{cells["D3"].render} #{cells["D4"].render} \n"
+
   end
 end

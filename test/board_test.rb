@@ -14,30 +14,17 @@ class BoardTest < Minitest::Test
   def test_it_has_cells
 
     board = Board.new
-    assert_equal ({
-    "A1" => board.cell1,
-    "A2" => board.cell2,
-    "A3" => board.cell3,
-    "A4" => board.cell4,
-    "B1" => board.cell5,
-    "B2" => board.cell6,
-    "B3" => board.cell7,
-    "B4" => board.cell8,
-    "C1" => board.cell9,
-    "C2" => board.cell10,
-    "C3" => board.cell11,
-    "C4" => board.cell12,
-    "D1" => board.cell13,
-    "D2" => board.cell14,
-    "D3" => board.cell15,
-    "D4" => board.cell16
-    }),
-    board.cells
+
+    assert_instance_of Hash, board.cells
+    assert_equal 16, board.cells.count
+    assert_instance_of Cell, board.cells["A1"]
+    assert_instance_of Cell, board.cells["D4"]
   end
 
   def test_that_coordinate_is_on_board
 
     board = Board.new
+
     assert_equal true, board.valid_coordinate?("A1")
     assert_equal true, board.valid_coordinate?("D4")
     assert_equal false, board.valid_coordinate?("A5")
@@ -98,10 +85,6 @@ class BoardTest < Minitest::Test
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]
 
-
-    cell_1.ship
-    cell_2.ship
-    cell_3.ship
     assert_equal cruiser, cell_1.ship
   end
 
@@ -116,10 +99,6 @@ class BoardTest < Minitest::Test
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]
 
-
-    cell_1.ship
-    cell_2.ship
-    cell_3.ship
     assert_equal true, cell_3.ship == cell_2.ship
   end
 
@@ -131,5 +110,21 @@ class BoardTest < Minitest::Test
     submarine = Ship.new("Submarine", 2)
 
     assert_equal false, board.valid_placement?(submarine, ["A1", "B1"])
+  end
+
+  def test_it_can_render
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+
+    board.place(cruiser, ["A1", "A2", "A3"])
+
+    assert_equal(
+      "  1 2 3 4 \n" +
+      "A . . . . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n",
+      board.render
+    )
   end
 end
