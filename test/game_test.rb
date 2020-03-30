@@ -8,7 +8,6 @@ require 'pry'
 class GameTest < Minitest::Test
 
   def test_it_exist
-    skip
     game = Game.new
 
     assert_instance_of Game, game
@@ -20,8 +19,14 @@ class GameTest < Minitest::Test
     assert_equal "Welcome to BATTLESHIP \n Enter p to play. Enter q to quit.", game.welcome
   end
 
-  def test_it_has_set_up
+  def test_it_can_quit
     skip
+      game = Game.new
+      assert_equal "Thanks for trying!", game.start
   end
 
+  def test_it_can_play_start_message
+      game = Game.new
+      assert_equal "Okay now we start", game.start
+  end
 end

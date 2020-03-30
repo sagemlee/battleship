@@ -3,8 +3,24 @@ class Game
   attr_reader :player_input
 
   def initialize
-    # @computer_board =
-    # @player_board =
+    @computer_board =
+    #we have the below method in board class with render
+    #make new boards, call render on those board 
+    p "COMPUTER BOARD"
+    p 11.times { print "=" }
+    p "  1 2 3 4 \n" +
+    "A . . . . \n" +
+    "B . . . . \n" +
+    "C . . . . \n" +
+    "D . . . . \n"
+    p @player_board =
+    p "PLAYER BOARD"
+    p 11.times { print "=" }
+    p "  1 2 3 4 \n" +
+     "A . . . . \n" +
+     "B . . . . \n" +
+     "C . . . . \n" +
+     "D . . . . \n"
     # @game_over = false
   end
 
@@ -25,18 +41,18 @@ def start
       end
     end
 
-
   if @player_input == "q"
-    p "Thanks for trying!"
+  replymessage = "Thanks for trying!"
+  p replymessage
   elsif @player_input == "p"
   p   "Okay now we start"
-  play
-  turn
-  boards
-  place comp ships
-  place player ships
-  take turn
+  p @player_board
+  p @computer_board
 
+  # boards
+  # place comp ships
+  # place player ships
+  # take turn
   end
 end
 

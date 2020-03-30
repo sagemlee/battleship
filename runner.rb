@@ -6,5 +6,3 @@ require 'pry'
 game = Game.new
 
 game.start
-
-binding.pry
