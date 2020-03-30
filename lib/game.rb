@@ -12,7 +12,14 @@ def welcome
 "Welcome to BATTLESHIP \n Enter p to play. Enter q to quit."
 end
 
-def place_ships
+def computer_place_ships
+# loop do
+#   .rand(0..4)
+#.rand(A..D)
+#
+end
+
+def player_place_ships
   puts "  I have laid out my ships on the grid.
   You now need to lay out your two ships.
   The Cruiser is three units long and the Submarine is two units long.
@@ -42,8 +49,8 @@ def start
       replymessage = "Thanks for trying!"
       puts replymessage
     elsif @player_input == "p"
-      # computer_place_ships
-      place_ships
+      computer_place_ships
+      player_place_ships
       # puts "Here are the empty boards to start:"
       # puts "Computer Board"
       # puts @computer_board.render
