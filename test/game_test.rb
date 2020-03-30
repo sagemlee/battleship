@@ -29,4 +29,15 @@ class GameTest < Minitest::Test
       game = Game.new
       assert_equal "Okay now we start", game.start
   end
-end
+
+#   def test_that_each_board_renders 
+#     game = Game.new
+#     game.start
+#
+#     assert_equal
+#   1 2 3 4
+# A . . . .
+# B . . . .
+# C . . . .
+# D . . . .
+# end

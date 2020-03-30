@@ -1,35 +1,32 @@
 require 'pry'
 class Game
-  attr_reader :player_input
+  attr_reader :player_input, :computer_board, :player_board
 
   def initialize
-    @computer_board =
-    #we have the below method in board class with render
-    #make new boards, call render on those board 
-    p "COMPUTER BOARD"
-    p 11.times { print "=" }
-    p "  1 2 3 4 \n" +
-    "A . . . . \n" +
-    "B . . . . \n" +
-    "C . . . . \n" +
-    "D . . . . \n"
-    p @player_board =
-    p "PLAYER BOARD"
-    p 11.times { print "=" }
-    p "  1 2 3 4 \n" +
-     "A . . . . \n" +
-     "B . . . . \n" +
-     "C . . . . \n" +
-     "D . . . . \n"
-    # @game_over = false
+
+    @computer_board  = Board.new
+    @player_board = Board.new
   end
 
 def welcome
 "Welcome to BATTLESHIP \n Enter p to play. Enter q to quit."
 end
 
+def place_ships
+  puts "  I have laid out my ships on the grid.
+  You now need to lay out your two ships.
+  The Cruiser is three units long and the Submarine is two units long.
+    1 2 3 4
+  A . . . .
+  B . . . .
+  C . . . .
+  D . . . .
+  Enter the squares for the Cruiser (3 spaces), for example ['A1', 'B1', 'C1']:"
+  puts gets.chomp
+end
+
 def start
-  p welcome
+  puts welcome
   @player_input = nil
 
   loop do
@@ -37,24 +34,32 @@ def start
       if @player_input == "q" || @player_input ==  "p"
         break
       else
-        p "Invalid input, try again"
+        puts "Invalid input, try again"
       end
     end
 
   if @player_input == "q"
-  replymessage = "Thanks for trying!"
-  p replymessage
-  elsif @player_input == "p"
-  p   "Okay now we start"
-  p @player_board
-  p @computer_board
+      replymessage = "Thanks for trying!"
+      puts replymessage
+    elsif @player_input == "p"
+      # computer_place_ships
+      place_ships
+      # puts "Here are the empty boards to start:"
+      # puts "Computer Board"
+      # puts @computer_board.render
+      # puts "Player Board"
+      # puts @player_board.render
+  end
+    # def   computer_place_ships
+    # end
+
+
+end
+end
+
+
 
   # boards
   # place comp ships
   # place player ships
   # take turn
-  end
-end
-
-
-end
