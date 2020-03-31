@@ -8,11 +8,11 @@ class BoardTest < Minitest::Test
 
   def test_that_it_exists
     board = Board.new
+
     assert_instance_of Board, board
   end
 
   def test_it_has_cells
-
     board = Board.new
 
     assert_instance_of Hash, board.cells
@@ -22,7 +22,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_that_coordinate_is_on_board
-
     board = Board.new
 
     assert_equal true, board.valid_coordinate?("A1")
@@ -33,12 +32,11 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_has_valid_length
-
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
 
-    assert_equal true, board.valid_placement?(cruiser, ["A1", "A2","A3"])
+    assert_equal true, board.valid_placement?(cruiser, ["A1", "A2", "A3"])
     assert_equal false, board.valid_placement?(submarine, ["A2", "A3", "A4"])
   end
 
