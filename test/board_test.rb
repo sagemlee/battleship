@@ -80,8 +80,6 @@ class BoardTest < Minitest::Test
     board.place(cruiser, ["A1", "A2", "A3"])
 
     cell_1 = board.cells["A1"]
-    cell_2 = board.cells["A2"]
-    cell_3 = board.cells["A3"]
 
     assert_equal cruiser, cell_1.ship
   end
@@ -93,7 +91,6 @@ class BoardTest < Minitest::Test
 
     board.place(cruiser, ["A1", "A2", "A3"])
 
-    cell_1 = board.cells["A1"]
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]
 
