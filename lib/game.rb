@@ -13,10 +13,14 @@ def welcome
 end
 
 def computer_place_ships
-# loop do
-#   .rand(0..4)
-#.rand(A..D)
-#
+  # loop do
+     # sub = ["#{rand(65..68).chr + rand(5)}, #{rand(65..68).chr + rand(5)}"]
+     # cruiser = ["#{rand(65..68).chr + rand(5)}, #{rand(65..68).chr + rand(5)}, #{rand(65..68).chr + rand(5)}"]
+     # if sub.valid_placement? && cruiser.valid_placement?
+     #   break
+     #   sub
+     #   cruiser
+     # end
 end
 
 def player_place_ships
