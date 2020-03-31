@@ -21,16 +21,16 @@ class GameTest < Minitest::Test
 
   def test_it_can_quit
     skip
-      game = Game.new
-      assert_equal "Thanks for trying!", game.start
+    game = Game.new
+    assert_equal "Thanks for trying!", game.start
   end
 
   def test_it_can_play_start_message
-      game = Game.new
-      assert_equal "Okay now we start", game.start
+    game = Game.new
+    assert_equal "Okay now we start", game.start
   end
 
-#   def test_that_each_board_renders 
+#   def test_that_each_board_renders
 #     game = Game.new
 #     game.start
 #
