@@ -46,10 +46,8 @@ class Board
 
     if ((letters_array.uniq.size <= 1) && (ship.length == coordinates.count)) && (coordinates & @taken_coordinates.to_a == [])
       numbers_array.each_cons(2).all? {|a,b| b.to_i == a.to_i + 1}
-
     elsif ((numbers_array.uniq.size <= 1) && (ship.length == coordinates.count)) && (coordinates & @taken_coordinates.to_a == [])
       letters_array.each_cons(2).all? {|a,b| b.ord == a.ord + 1}
-      
     else
       false
     end
