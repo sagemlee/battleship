@@ -127,4 +127,20 @@ class BoardTest < Minitest::Test
       board.render
     )
   end
+
+  def test_it_can_render_hidden_ships
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+
+    board.place(cruiser, ["A1", "A2", "A3"])
+
+    assert_equal(
+      "  1 2 3 4 \n" +
+      "A S S S . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n",
+      board.render(true)
+    )
+  end
 end
