@@ -13,12 +13,8 @@ class Cell
     @ship == nil
   end
 
-  # def ship
-  #   @ship
-  # end
-
-  def place_ship(type_of_ship)
-    @ship = type_of_ship
+  def place_ship(ship)
+    @ship = ship
   end
 
   def fired_upon?
