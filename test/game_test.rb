@@ -7,37 +7,47 @@ require 'pry'
 
 class GameTest < Minitest::Test
 
-  def test_it_exist
+  # def test_it_exist
+  #   game = Game.new
+  #
+  #   assert_instance_of Game, game
+  # end
+  #
+  # def test_it_can_show_welcome_message
+  #   game = Game.new
+  #
+  #   assert_equal "Welcome to BATTLESHIP\n Enter p to play. Enter q to quit.", game.welcome
+  # end
+  #
+  # def test_computer_places_ships_on_board
+  #   game = Game.new
+  #   game.computer_place_ships
+  #
+  #   assert_equal false, game.computer_sub_coordinates[0].empty?
+  #   assert_equal false, game.computer_cruiser_coordinates[0].empty?
+  # end
+  #
+  # def test_it_can_place_player_ships
+  #   game = Game.new
+  #   game.player_place_ships
+  #
+  #   assert_equal false, game.player_cruiser_coordinates[0].empty?
+  #   assert_equal false, game.player_sub_coordinates[0].empty?
+  # end
+  #
+  # def test_that_player_chooses_a_coordinate_to_fire_on
+  #   game = Game.new
+  #
+  #   game.start
+  #
+  #   assert_equal true, game.computer_board.cells[game.player_target].fired_upon?
+  # end
+
+  def test_that_computer_can_fire_random_shot
     game = Game.new
 
-    assert_instance_of Game, game
+    game.start
+
+    assert_equal true, game.player_board.cells[game.computer_target].fired_upon?
   end
-
-  def test_it_can_show_welcome_message
-    game = Game.new
-
-    assert_equal "Welcome to BATTLESHIP \n Enter p to play. Enter q to quit.", game.welcome
-  end
-
-  def test_it_can_quit
-    skip
-      game = Game.new
-      assert_equal "Thanks for trying!", game.start
-  end
-
-  def test_it_can_play_start_message
-      game = Game.new
-      assert_equal "Okay now we start", game.start
-  end
-
-#   def test_that_each_board_renders 
-#     game = Game.new
-#     game.start
-#
-#     assert_equal
-#   1 2 3 4
-# A . . . .
-# B . . . .
-# C . . . .
-# D . . . .
-# end
+end
