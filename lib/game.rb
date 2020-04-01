@@ -61,7 +61,7 @@ class Game
         break
       end
     end
-    welcome
+    start 
   end
 
 
