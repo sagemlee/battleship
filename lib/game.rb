@@ -13,8 +13,10 @@ class Game
               :computer_target
 
   def initialize
-    @cruiser = Ship.new("Cruiser", 3)
-    @submarine = Ship.new("Submarine", 2)
+    @player_cruiser = Ship.new("Cruiser", 3)
+    @player_submarine = Ship.new("Submarine", 2)
+    @comp_cruiser = Ship.new("Cruiser", 3)
+    @comp_submarine = Ship.new("Submarine", 2)
     @computer_board = Board.new
     @player_board = Board.new
 
@@ -40,10 +42,10 @@ class Game
     end
 
     if @player_input == "q"
-      replymessage = "Thanks for trying!"
-      puts replymessage
-    elsif @player_input == "p"
-
+        replymessage = "Thanks for trying!"
+        puts replymessage
+      elsif @player_input == "p"
+    end
     computer_place_ships
     player_place_ships
 
@@ -51,33 +53,36 @@ class Game
       turn
       @computer_render = @computer_board.render.count "X"
       @player_render = @player_board.render.count "X"
-      if @computer_render == 5 || @player_render == 5
+      if @computer_render == 5
         break
+        puts "You won!"
+      elsif @player_render == 5
+        break
+        puts "Computer won!"
       end
     end
-
-    # until @renderings.count == 5
-    #   turn
-    #   @renderings = @computer_board.render.count "X"
-    #   # @renderings = @computer_board.cells.values.find_all do |cell|
-    #   #      cell == "X"
-    #
-    #   end
-    end
+    welcome
   end
+
 
 # Setup
 
   def computer_place_ships
     loop do
       @computer_sub_coordinates = [rand(65..68).chr + "#{rand(1..4)}", rand(65..68).chr + "#{rand(1..4)}"]
-      @computer_cruiser_coordinates = [rand(65..68).chr + "#{rand(1..4)}", rand(65..68).chr + "#{rand(1..4)}", rand(65..68).chr + "#{rand(1..4)}"]
-      if @computer_board.valid_placement?(@submarine, @computer_sub_coordinates) && @computer_board.valid_placement?(@cruiser, @computer_cruiser_coordinates)
+      if @computer_board.valid_placement?(@comp_submarine, @computer_sub_coordinates)
         break
+        @computer_board.place(@comp_submarine, @computer_sub_coordinates)
+        binding.pry
       end
     end
-    @computer_board.place(@submarine, @computer_sub_coordinates)
-    @computer_board.place(@cruiser, @computer_cruiser_coordinates)
+    loop do
+      @computer_cruiser_coordinates = [rand(65..68).chr + "#{rand(1..4)}", rand(65..68).chr + "#{rand(1..4)}", rand(65..68).chr + "#{rand(1..4)}"]
+      if @computer_board.valid_placement?(@comp_cruiser, @computer_cruiser_coordinates)
+        break
+        @computer_board.place(@comp_cruiser, @computer_cruiser_coordinates)
+      end
+    end
   end
 
   def player_place_ships
@@ -95,14 +100,14 @@ class Game
 
     loop do
       @player_cruiser_coordinates = gets.chomp.split(" ")
-      if @player_board.valid_placement?(@cruiser, @player_cruiser_coordinates)
+      if @player_board.valid_placement?(@player_cruiser, @player_cruiser_coordinates)
         break
       else
       puts "Those are invalid coordinates. Please try again:"
       puts ">"
       end
     end
-    @player_board.place(@cruiser, @player_cruiser_coordinates)
+    @player_board.place(@player_cruiser, @player_cruiser_coordinates)
 
     puts @player_board.render(true)
 
@@ -113,14 +118,14 @@ class Game
 
     loop do
       @player_sub_coordinates = gets.chomp.split(" ")
-      if @player_board.valid_placement?(@submarine, @player_sub_coordinates)
+      if @player_board.valid_placement?(@player_submarine, @player_sub_coordinates)
         break
-      else
-      puts "Those are invalid coordinates. Please try again:"
-      puts ">"
+        else
+          puts "Those are invalid coordinates. Please try again:"
+          puts ">"
       end
     end
-    @player_board.place(@submarine, @player_sub_coordinates)
+    @player_board.place(@player_submarine, @player_sub_coordinates)
   end
 
   def turn
@@ -137,7 +142,7 @@ class Game
         else
           puts "Please enter a valid coordinate:"
         end
-      end
+    end
     @computer_board.cells[@player_target].fire_upon
 
     loop do
@@ -170,6 +175,4 @@ class Game
   puts "My shot on #{computer_target} #{computer_message}."
 
 end
-
-
-end
+end 
