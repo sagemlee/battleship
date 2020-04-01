@@ -29,7 +29,7 @@ class GameTest < Minitest::Test
     game = Game.new
     game.computer_place_ships
 
-    assert_equal
+    assert_equal false, game.computer_sub_coordinates[0].empty?
   end
 
 end

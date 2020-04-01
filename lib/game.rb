@@ -1,6 +1,9 @@
 require 'pry'
 class Game
-  attr_reader :player_input, :computer_board, :player_board
+  attr_reader :player_input,
+              :computer_board,
+              :player_board,
+              :computer_sub_coordinates
 
   def initialize
     @cruiser = Ship.new("Cruiser", 3)
@@ -54,11 +57,9 @@ class Game
         break
       end
     end
+    @computer_board.place(@submarine, @computer_sub_coordinates)
+    @computer_board.place(@cruiser, @computer_cruiser_coordinates)
   end
-
-  #   @computer_board.place(submarine, @computer_sub_coordinates)
-  #   @computer_board.place(cruiser, @computer_cruiser_coordinates)
-  # end
 
   # def player_place_ships
   #   puts "I have laid out my ships on the grid.
