@@ -16,7 +16,7 @@ class GameTest < Minitest::Test
   def test_it_can_show_welcome_message
     game = Game.new
 
-    assert_equal "Welcome to BATTLESHIP \n Enter p to play. Enter q to quit.", game.welcome
+    assert_equal "Welcome to BATTLESHIP\n Enter p to play. Enter q to quit.", game.welcome
   end
 
   def test_it_can_quit
@@ -25,10 +25,14 @@ class GameTest < Minitest::Test
     assert_equal "Thanks for trying!", game.start
   end
 
-  def test_it_can_play_start_message
+  def test_computer_places_ships_on_board
     game = Game.new
-    assert_equal "Okay now we start", game.start
+    game.computer_place_ships
+
+    assert_equal
   end
+
+end
 
 #   def test_that_each_board_renders
 #     game = Game.new
