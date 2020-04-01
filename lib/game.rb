@@ -1,4 +1,6 @@
 require 'pry'
+require './lib/board'
+
 class Game
   attr_reader :player_input,
               :computer_board,
@@ -6,7 +8,8 @@ class Game
               :computer_sub_coordinates,
               :computer_cruiser_coordinates,
               :player_cruiser_coordinates,
-              :player_sub_coordinates
+              :player_sub_coordinates,
+              :player_target
 
   def initialize
     @cruiser = Ship.new("Cruiser", 3)
@@ -40,6 +43,7 @@ class Game
     elsif @player_input == "p"
       computer_place_ships
       player_place_ships
+      turn
     end
   end
 
@@ -100,5 +104,15 @@ class Game
     @player_board.place(@submarine, @player_sub_coordinates)
   end
 
+  def turn
+    puts "=============COMPUTER BOARD============="
+    puts @computer_board.render
 
+    puts "==============PLAYER BOARD=============="
+    puts @player_board.render(true)
+
+    puts "Enter the coordinate for your shot:"
+    @player_target = gets.chomp
+    @computer_board.cells[@player_target].fire_upon
+  end
 end
