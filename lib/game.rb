@@ -54,11 +54,11 @@ class Game
       @computer_render = @computer_board.render.count "X"
       @player_render = @player_board.render.count "X"
       if @computer_render == 5
+          puts "You won!"
         break
-        puts "You won!"
       elsif @player_render == 5
-        break
         puts "Computer won!"
+        break
       end
     end
     welcome
@@ -71,18 +71,18 @@ class Game
     loop do
       @computer_sub_coordinates = [rand(65..68).chr + "#{rand(1..4)}", rand(65..68).chr + "#{rand(1..4)}"]
       if @computer_board.valid_placement?(@comp_submarine, @computer_sub_coordinates)
-        break
         @computer_board.place(@comp_submarine, @computer_sub_coordinates)
-        binding.pry
+        break
       end
     end
     loop do
       @computer_cruiser_coordinates = [rand(65..68).chr + "#{rand(1..4)}", rand(65..68).chr + "#{rand(1..4)}", rand(65..68).chr + "#{rand(1..4)}"]
       if @computer_board.valid_placement?(@comp_cruiser, @computer_cruiser_coordinates)
-        break
         @computer_board.place(@comp_cruiser, @computer_cruiser_coordinates)
+        break
       end
     end
+
   end
 
   def player_place_ships
@@ -175,4 +175,4 @@ class Game
   puts "My shot on #{computer_target} #{computer_message}."
 
 end
-end 
+end
