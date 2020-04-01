@@ -132,3 +132,20 @@ class Game
     @player_board.cells[@computer_target].fire_upon
   end
 end
+
+if @player_board.cells[@computer_target].render == "M"
+  computer_message = "was a miss"
+elsif @player_board.cells[@computer_target].render == "H"
+  computer_message = "was a hit"
+elsif @player_board.cells[@computer_target].render == "X"
+  computer_message = "has sunk a ship"
+
+if @computer_board.cells[@player_target].render == "M"
+  player_message = "was a miss"
+elsif @computer_board.cells[@player_target].render == "H"
+  player_message = "was a hit"
+elsif @computer_board.cells[@player_target].render == "X"
+  player_message = "has sunk a ship"
+
+puts "Your shot on #{player_target} #{player_message}."
+puts "My shot on #{computer_target} #{computer_message}."
