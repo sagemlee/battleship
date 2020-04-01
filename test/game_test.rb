@@ -34,12 +34,20 @@ class GameTest < Minitest::Test
   #   assert_equal false, game.player_cruiser_coordinates[0].empty?
   #   assert_equal false, game.player_sub_coordinates[0].empty?
   # end
+  #
+  # def test_that_player_chooses_a_coordinate_to_fire_on
+  #   game = Game.new
+  #
+  #   game.start
+  #
+  #   assert_equal true, game.computer_board.cells[game.player_target].fired_upon?
+  # end
 
-  def test_that_player_chooses_a_coordinate_to_fire_on
+  def test_that_computer_can_fire_random_shot
     game = Game.new
 
     game.start
 
-    assert_equal true, game.computer_board.cells[game.player_target].fired_upon?
+    assert_equal true, game.player_board.cells[game.computer_target].fired_upon?
   end
 end

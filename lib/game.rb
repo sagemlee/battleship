@@ -9,7 +9,8 @@ class Game
               :computer_cruiser_coordinates,
               :player_cruiser_coordinates,
               :player_sub_coordinates,
-              :player_target
+              :player_target,
+              :computer_target
 
   def initialize
     @cruiser = Ship.new("Cruiser", 3)
@@ -112,7 +113,22 @@ class Game
     puts @player_board.render(true)
 
     puts "Enter the coordinate for your shot:"
-    @player_target = gets.chomp
+      loop do
+        @player_target = gets.chomp
+          if @computer_board.cells[@player_target].fired_upon? == false
+            break
+          else
+            puts "Please enter a valid coordinate:"
+          end
+        end
     @computer_board.cells[@player_target].fire_upon
+
+    loop do
+      @computer_target = rand(65..68).chr + (rand(1..4)).to_s
+        if @player_board.cells[@computer_target].fired_upon? == false
+          break
+        end
+      end
+    @player_board.cells[@computer_target].fire_upon
   end
 end
