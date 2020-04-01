@@ -17,6 +17,7 @@ class Game
     @submarine = Ship.new("Submarine", 2)
     @computer_board = Board.new
     @player_board = Board.new
+
   end
 
 # Main Menu
@@ -42,9 +43,26 @@ class Game
       replymessage = "Thanks for trying!"
       puts replymessage
     elsif @player_input == "p"
-      computer_place_ships
-      player_place_ships
+
+    computer_place_ships
+    player_place_ships
+
+    loop do
       turn
+      @computer_render = @computer_board.render.count "X"
+      @player_render = @player_board.render.count "X"
+      if @computer_render == 5 || @player_render == 5
+        break
+      end
+    end
+
+    # until @renderings.count == 5
+    #   turn
+    #   @renderings = @computer_board.render.count "X"
+    #   # @renderings = @computer_board.cells.values.find_all do |cell|
+    #   #      cell == "X"
+    #
+    #   end
     end
   end
 
@@ -108,19 +126,18 @@ class Game
   def turn
     puts "=============COMPUTER BOARD============="
     puts @computer_board.render
-
     puts "==============PLAYER BOARD=============="
     puts @player_board.render(true)
-
     puts "Enter the coordinate for your shot:"
-      loop do
-        @player_target = gets.chomp
-          if @computer_board.cells[@player_target].fired_upon? == false
-            break
-          else
-            puts "Please enter a valid coordinate:"
-          end
+
+    loop do
+      @player_target = gets.chomp
+        if @computer_board.cells[@player_target].fired_upon? == false
+          break
+        else
+          puts "Please enter a valid coordinate:"
         end
+      end
     @computer_board.cells[@player_target].fire_upon
 
     loop do
@@ -130,22 +147,29 @@ class Game
         end
       end
     @player_board.cells[@computer_target].fire_upon
+
+  if @player_board.cells[@computer_target].render == "M"
+      computer_message = "was a miss"
+    elsif @player_board.cells[@computer_target].render == "H"
+      computer_message = "was a hit"
+    elsif @player_board.cells[@computer_target].render == "X"
+      computer_message = "has sunk a ship"
   end
+
+  if @computer_board.cells[@player_target].render == "M"
+      player_message = "was a miss"
+    elsif @computer_board.cells[@player_target].render == "H"
+      player_message = "was a hit"
+    elsif @computer_board.cells[@player_target].render == "X"
+      player_message = "has sunk a ship"
+  end
+  puts " "
+  puts "==============RESULTS=============="
+
+  puts "Your shot on #{player_target} #{player_message}."
+  puts "My shot on #{computer_target} #{computer_message}."
+
 end
 
-if @player_board.cells[@computer_target].render == "M"
-  computer_message = "was a miss"
-elsif @player_board.cells[@computer_target].render == "H"
-  computer_message = "was a hit"
-elsif @player_board.cells[@computer_target].render == "X"
-  computer_message = "has sunk a ship"
 
-if @computer_board.cells[@player_target].render == "M"
-  player_message = "was a miss"
-elsif @computer_board.cells[@player_target].render == "H"
-  player_message = "was a hit"
-elsif @computer_board.cells[@player_target].render == "X"
-  player_message = "has sunk a ship"
-
-puts "Your shot on #{player_target} #{player_message}."
-puts "My shot on #{computer_target} #{computer_message}."
+end
