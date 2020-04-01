@@ -30,8 +30,16 @@ class GameTest < Minitest::Test
     game.computer_place_ships
 
     assert_equal false, game.computer_sub_coordinates[0].empty?
+    assert_equal false, game.computer_cruiser_coordinates[0].empty?
   end
 
+  def test_it_can_place_player_ships
+    game = Game.new
+    game.player_place_ships
+
+    assert_equal false, game.player_cruiser_coordinates[0].empty?
+    assert_equal false, game.player_sub_coordinates[0].empty?
+  end
 end
 
 #   def test_that_each_board_renders
