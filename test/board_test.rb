@@ -108,22 +108,19 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_render
+    skip
     board = Board.new
-    cruiser = Ship.new("Cruiser", 3)
 
-    board.place(cruiser, ["A1", "A2", "A3"])
-
-    assert_equal(
-      "  1 2 3 4 \n" +
-      "A . . . . \n" +
-      "B . . . . \n" +
-      "C . . . . \n" +
-      "D . . . . \n",
-      board.render
-    )
+    assert_equal (
+    "  1 2 3 4 \n" +
+    "A . . . . \n" +
+    "B . . . . \n" +
+    "C . . . . \n" +
+    "D . . . ." ), board.render
   end
 
   def test_it_can_render_hidden_ships
+    skip
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
 
