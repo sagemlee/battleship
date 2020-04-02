@@ -23,8 +23,7 @@ class Board
       "D2" => Cell.new("D2"),
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4")
-    }
-
+      }
     @taken_coordinates = []
   end
 
@@ -33,12 +32,11 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-# create helper method here if refactoring (.horizontal)
     letters_array = []
     coordinates.each do |coordinate|
       letters_array << coordinate.slice(0)
     end
-# create helper method here if refactoring (.vertical)
+
     numbers_array = []
     coordinates.each do |coordinate|
       numbers_array << coordinate.slice(1)
@@ -68,6 +66,7 @@ class Board
     "A #{cells["A1"].render(secretboard)} #{cells["A2"].render(secretboard)} #{cells["A3"].render(secretboard)} #{cells["A4"].render(secretboard)}\n" +
     "B #{cells["B1"].render(secretboard)} #{cells["B2"].render(secretboard)} #{cells["B3"].render(secretboard)} #{cells["B4"].render(secretboard)}\n" +
     "C #{cells["C1"].render(secretboard)} #{cells["C2"].render(secretboard)} #{cells["C3"].render(secretboard)} #{cells["C4"].render(secretboard)}\n" +
-    "D #{cells["D1"].render(secretboard)} #{cells["D2"].render(secretboard)} #{cells["D3"].render(secretboard)} #{cells["D4"].render(secretboard)}\n"
+    "D #{cells["D1"].render(secretboard)} #{cells["D2"].render(secretboard)} #{cells["D3"].render(secretboard)} #{cells["D4"].render(secretboard)}"
   end
+
 end
