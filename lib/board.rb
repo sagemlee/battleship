@@ -63,10 +63,10 @@ class Board
   def render(secretboard = false)
 
     "  1 2 3 4 \n" +
-    "A #{cells["A1"].render(secretboard)} #{cells["A2"].render(secretboard)} #{cells["A3"].render(secretboard)} #{cells["A4"].render(secretboard)}\n" +
-    "B #{cells["B1"].render(secretboard)} #{cells["B2"].render(secretboard)} #{cells["B3"].render(secretboard)} #{cells["B4"].render(secretboard)}\n" +
-    "C #{cells["C1"].render(secretboard)} #{cells["C2"].render(secretboard)} #{cells["C3"].render(secretboard)} #{cells["C4"].render(secretboard)}\n" +
-    "D #{cells["D1"].render(secretboard)} #{cells["D2"].render(secretboard)} #{cells["D3"].render(secretboard)} #{cells["D4"].render(secretboard)}"
+    "A #{cells["A1"].render(secretboard)} #{cells["A2"].render(secretboard)} #{cells["A3"].render(secretboard)} #{cells["A4"].render(secretboard)} \n" +
+    "B #{cells["B1"].render(secretboard)} #{cells["B2"].render(secretboard)} #{cells["B3"].render(secretboard)} #{cells["B4"].render(secretboard)} \n" +
+    "C #{cells["C1"].render(secretboard)} #{cells["C2"].render(secretboard)} #{cells["C3"].render(secretboard)} #{cells["C4"].render(secretboard)} \n" +
+    "D #{cells["D1"].render(secretboard)} #{cells["D2"].render(secretboard)} #{cells["D3"].render(secretboard)} #{cells["D4"].render(secretboard)} \n"
   end
 
 end
