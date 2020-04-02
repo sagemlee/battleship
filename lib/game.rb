@@ -25,11 +25,12 @@ class Game
 # Main Menu
 
   def welcome
-    "Welcome to BATTLESHIP\n Enter p to play. Enter q to quit."
+    "Welcome to BATTLESHIP\n Enter p to play. Enter q to quit.\n >"
   end
 
   def start
     puts welcome
+
     @player_input = nil
 
     loop do
@@ -37,31 +38,30 @@ class Game
       if @player_input == "q" || @player_input ==  "p"
         break
       else
-        puts "Invalid input, try again"
+        puts "Invalid input, try again:"
+        puts ">"
       end
     end
 
     if @player_input == "q"
-        replymessage = "Thanks for trying!"
-        puts replymessage
+        puts  "Thanks for trying!"
       elsif @player_input == "p"
-    end
-    computer_place_ships
-    player_place_ships
-
-    loop do
-      turn
-      @computer_render = @computer_board.render.count "X"
-      @player_render = @player_board.render.count "X"
-      if @computer_render == 5
-          puts "You won!"
-        break
-      elsif @player_render == 5
-        puts "Computer won!"
-        break
+        computer_place_ships
+        player_place_ships
+        loop do
+          turn
+          @computer_render = @computer_board.render.count "X"
+          @player_render = @player_board.render.count "X"
+          if @computer_render == 5
+              puts "You won!"
+            break
+          elsif @player_render == 5
+            puts "Computer won!"
+            break
+          end
+        end
+        start
       end
-    end
-    start 
   end
 
 
@@ -95,6 +95,7 @@ class Game
     C . . . .
     D . . . .
     Enter the squares for the Cruiser (3 spaces), for example 'A1 B1 C1':"
+    puts ">"
 
     @player_cruiser_coordinates = []
 
@@ -134,20 +135,40 @@ class Game
     puts "==============PLAYER BOARD=============="
     puts @player_board.render(true)
     puts "Enter the coordinate for your shot:"
+    puts ">"
 
     loop do
       @player_target = gets.chomp
-        if @computer_board.cells[@player_target].fired_upon? == false
-          break
-        else
+        # while @computer_board.valid_coordinate?(@player_target) == false || @computer_board.cells[@player_target].fired_upon?
+        #   if @computer_board.valid_coordinate?(@player_target) == false
+        #     puts "This is not a valid coordinate:"
+        #   elsif @computer_board.cells[@player_target].fired_upon?
+        #     puts "This coordinate has already been fired upon."
+        #   end
+        #   puts "Please enter a valid coordinate:"
+        #   print ">"
+        # end
+
+
+        if @computer_board.valid_coordinate?(@player_target) == false
           puts "Please enter a valid coordinate:"
+          puts ">"
+        elsif  @computer_board.cells[@player_target].fired_upon?
+          puts "This coordinate has already been fired upon."
+          puts "Please enter a valid coordinate:"
+          puts ">"
+        else
+          break
         end
+
+
+
     end
     @computer_board.cells[@player_target].fire_upon
 
     loop do
       @computer_target = rand(65..68).chr + (rand(1..4)).to_s
-        if @player_board.cells[@computer_target].fired_upon? == false
+        if @player_board.cells[@computer_target].fired_upon? == false && @player_board.valid_coordinate?(@computer_target)
           break
         end
       end

@@ -48,11 +48,9 @@ class GameTest < Minitest::Test
   # end
 
   def test_that_computer_can_fire_random_shot
-
+    skip
     game = Game.new
-
     game.start
-
     assert_equal true, game.player_board.cells[game.computer_target].fired_upon?
   end
 
