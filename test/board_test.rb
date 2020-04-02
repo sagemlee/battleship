@@ -41,7 +41,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_has_consecutive_coordinates
-
+skip
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
@@ -53,7 +53,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_cannot_be_diagonal
-
+skip
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
@@ -63,7 +63,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_that_placement_is_valid
-
+skip
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
@@ -73,7 +73,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_that_ship_can_be_placed_on_board
-
+    skip
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
 
@@ -85,7 +85,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_that_a_ship_is_on_multiple_cells
-
+skip
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
 
@@ -98,6 +98,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_wont_place_overlapping_ships
+    skip
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     board.place(cruiser, ["A1", "A2", "A3"])
@@ -108,19 +109,21 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_render
-    skip
+
     board = Board.new
 
-    assert_equal (
-    "  1 2 3 4 \n" +
-    "A . . . . \n" +
-    "B . . . . \n" +
-    "C . . . . \n" +
-    "D . . . ." ), board.render
+    assert_equal(
+      "  1 2 3 4 \n" +
+      "A . . . . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n",
+      board.render
+    )
   end
 
   def test_it_can_render_hidden_ships
-    skip
+    
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
 
